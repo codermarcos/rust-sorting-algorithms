@@ -1,4 +1,5 @@
 pub mod bubble;
+pub mod insertion;
 pub enum Algorithm {
 	Quick,
 	Bubble,
@@ -15,4 +16,10 @@ impl Algorithm {
 			&Algorithm::Selection => "Selection",
 		}
 	}
+}
+
+pub struct SortResult {
+	pub vector: std::vec::Vec<u8>,
+	pub algorithm: Algorithm,
+	pub duration: u128,
 }
