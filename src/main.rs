@@ -48,4 +48,11 @@ fn main() {
 	let mut result = algorithms::handle_algorithm(input_algorithm.as_ref(), array);
 
 	result.sort_by(|a, b| b.duration.cmp(&a.duration));
+
+	for r in result {
+		println!("  {} levou:\n\t 0,0{}ms", r.algorithm.as_str(), r.duration);
+		if show && args.contains(&"result".to_string()) {
+			println!("result {:?}", r.vector);
+		}
+	}
 }
