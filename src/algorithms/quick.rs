@@ -1,3 +1,50 @@
+use algorithms::{Algorithm, SortResult};
+use generate::time;
+
+pub fn sort(vector: Vec<u8>) -> SortResult {
+	let start = time();
+
+	let result = algorithm(vector);
+
+	let duration = time() - start;
+
+	SortResult {
+		duration: duration.as_nanos(),
+		algorithm: Algorithm::Quick,
+		vector: result,
+	}
+}
+
+fn algorithm(vector: Vec<u8>) -> Vec<u8> {
+	let mut result = vec![];
+
+	let p = vector[0];
+	let mut left = vec![];
+	let mut right = vec![];
+
+	for i in 1..vector.len() {
+		if vector[i] < p {
+			left.push(vector[i]);
+		} else {
+			right.push(vector[i]);
+		}
+	}
+
+	if left.len() != 0 {
+		left = algorithm(left);
+		result.extend(&left);
+	}
+
+	result.push(p);
+
+	if right.len() != 0 {
+		right = algorithm(right);
+		result.extend(&right);
+	}
+	
+	result
+}
+
 
 #[cfg(test)]
 mod tests {
