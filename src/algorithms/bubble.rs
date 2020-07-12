@@ -38,6 +38,7 @@ fn algorithm(vector: Vec<u8>) -> Vec<u8> {
 
 #[cfg(test)]
 mod tests {
+	use algorithms::{Algorithm, bubble};
 
 	#[test]
 	fn bubble_algorithm() {
