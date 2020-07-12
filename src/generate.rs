@@ -9,3 +9,14 @@ pub fn vec(size: usize) -> Vec<u8> {
 
 	array
 }
+
+#[cfg(test)]
+mod tests {
+	use generate;
+	
+	#[test]
+	fn generate_vec_test() {
+		let array = generate::vec(10);
+		assert_eq!(array.len(), 10);
+	}
+}
