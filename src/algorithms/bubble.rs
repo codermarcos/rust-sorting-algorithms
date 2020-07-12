@@ -1,3 +1,18 @@
+use algorithms::{Algorithm, SortResult};
+use generate::time;
+
+pub fn sort(vector: Vec<u8>) -> SortResult {
+	let start = time();
+
+	let result = algorithm(vector);
+
+	let duration = time() - start;
+	SortResult {
+		duration: duration.as_nanos(),
+		algorithm: Algorithm::Bubble,
+		vector: result,
+	}
+}
 
 fn algorithm(vector: Vec<u8>) -> Vec<u8> {
 	let mut ordened: bool = false;
