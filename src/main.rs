@@ -1,9 +1,14 @@
 extern crate rand;
+
+use std::env;
 use std::io::stdin;
 use std::io::stdout;
 use std::io::Write;
 mod generate;
 fn main() {
+	let args: Vec<String> = env::args().collect();
+	let show = args.contains(&"show".to_string());
+	
 	let mut input_algorithm = String::new();
 	let mut input_length = String::new();
 	let mut output = stdout();
@@ -33,4 +38,7 @@ fn main() {
 
 	let array = generate::vec(input_length.parse::<usize>().unwrap());
 
+	if show && args.contains(&"initial".to_string()) {
+		println!("initial {:?}", array);
+	}
 }
