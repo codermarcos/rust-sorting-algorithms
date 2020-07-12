@@ -4,7 +4,10 @@ use std::env;
 use std::io::stdin;
 use std::io::stdout;
 use std::io::Write;
+
 mod generate;
+mod algorithms;
+
 fn main() {
 	let args: Vec<String> = env::args().collect();
 	let show = args.contains(&"show".to_string());
@@ -41,4 +44,8 @@ fn main() {
 	if show && args.contains(&"initial".to_string()) {
 		println!("initial {:?}", array);
 	}
+
+	let mut result = algorithms::handle_algorithm(input_algorithm.as_ref(), array);
+
+	result.sort_by(|a, b| b.duration.cmp(&a.duration));
 }
