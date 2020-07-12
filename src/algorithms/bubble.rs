@@ -31,4 +31,11 @@ mod tests {
 		assert_eq!(result, vec![1, 3, 5, 6, 10]);
 	}
 
+	#[test]
+	fn bubble_result() {
+		let array = vec![10, 5, 1, 3, 6];
+		let result = bubble::sort(array.clone());
+		assert_eq!(result.vector, vec![1, 3, 5, 6, 10]);
+		assert_eq!(result.algorithm.as_str(), Algorithm::Bubble.as_str());
+	}
 }
