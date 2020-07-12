@@ -1,3 +1,36 @@
+use algorithms::{Algorithm, SortResult};
+use generate::time;
+
+pub fn sort(vector: Vec<u8>) -> SortResult {
+	let start = time();
+
+	let result = algorithm(vector);
+
+	let duration = time() - start;
+	SortResult {
+		algorithm: Algorithm::Insertion,
+		duration: duration.as_nanos(),
+		vector: result,
+	}
+}
+
+fn algorithm(vector: Vec<u8>) -> Vec<u8> {
+	let mut result: Vec<u8> = vector;
+
+	for i in 0..result.len() {
+		let mut x = i + 1;
+		while x > 0 && x < result.len() && result[x - 1] > result[x] {
+			let prev = result[x - 1];
+			result[x - 1] = result[x];
+			result[x] = prev;
+			x -= 1;
+		}
+	}
+
+	result
+}
+
+
 #[cfg(test)]
 mod tests {
 	use algorithms::{Algorithm, insertion};
